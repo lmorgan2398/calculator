@@ -1,5 +1,10 @@
 console.log('Hello World!')
 
+let firstNumber;
+let operator;
+let secondNumber;
+
+
 function add(num1, num2) {
     return num1 + num2;
 };
