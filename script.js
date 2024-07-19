@@ -42,6 +42,8 @@ firstNumber = '3';
 operator = '*';
 secondNumber = '6';
 
+console.log(`${firstNumber} ${operator} ${secondNumber}`);
+
 console.log(multiply(firstNumber, secondNumber));
 console.log(operate(firstNumber, operator, secondNumber));
 console.log(firstNumber);
