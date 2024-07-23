@@ -87,3 +87,13 @@ equalsButton.addEventListener('click', () => {
 
     display.textContent = `${firstNumber} ${operator} ${secondNumber} = ${answer}`;
 });
+
+
+let clearButton = document.querySelector('.clear-button')
+clearButton.addEventListener('click', () => {
+    firstNumber = '';
+    operator = '';
+    secondNumber = '';
+    answer = '';
+    display.textContent = `${firstNumber} ${operator} ${secondNumber}`;
+});
