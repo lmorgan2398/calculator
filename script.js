@@ -67,8 +67,11 @@ operatorButtons.forEach((button) => {
             operator = '';
             secondNumber = '';
             answer = '';
+        } else if (answer === '' && firstNumber !== '' && operator !== '' && secondNumber !== '') {
+            firstNumber = operate(firstNumber, operator, secondNumber);
+            secondNumber = '';
         }
-        
+
         if (firstNumber !== '') {
             operator = button.textContent;
         }
