@@ -1,9 +1,11 @@
 let firstNumber = '';
 let operator = '';
 let secondNumber = '';
+let answer = '';
 
 let display = document.querySelector('.display');
 display.textContent = `${firstNumber} ${operator} ${secondNumber}`
+
 
 function add(num1, num2) {
     return +num1 + +num2;
@@ -35,30 +37,50 @@ function operate(num1, op, num2) {
     return ans;
 }
 
+
 let digitButtons = Array.from(document.querySelectorAll('.digit'));
 digitButtons.forEach((button) => {
     button.addEventListener('click', () => {
-        if (operator === '') {
-            firstNumber += +(button.textContent);
-        } else {
-            secondNumber += +(button.textContent);
+        if (answer !== '') {
+            firstNumber = '';
+            operator = '';
+            secondNumber = '';
+            answer = '';
         };
+
+        if (operator === '') {
+            firstNumber += button.textContent;
+        } else {
+            secondNumber += button.textContent;
+        };
+
         display.textContent = `${firstNumber} ${operator} ${secondNumber}`;
     })
 });
+
 
 let operatorButtons = Array.from(document.querySelectorAll('.operator'));
 operatorButtons.forEach((button) => {
     button.addEventListener('click',  () => {
+        if (answer !== '') {
+            firstNumber = answer;
+            operator = '';
+            secondNumber = '';
+            answer = '';
+        }
+        
         if (firstNumber !== '') {
             operator = button.textContent;
         }
+
         display.textContent = `${firstNumber} ${operator} ${secondNumber}`;
     })
 });
 
+
 let equalsButton = document.querySelector('.equals-button')
 equalsButton.addEventListener('click', () => {
     answer = operate(firstNumber, operator, secondNumber)
+
     display.textContent = `${firstNumber} ${operator} ${secondNumber} = ${answer}`;
 });
