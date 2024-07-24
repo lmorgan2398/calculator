@@ -46,10 +46,10 @@ body {
     justify-content: flex-end;
     align-items: flex-end;
     width: 260px;
-    min-height: 100px;
+    min-height: 150px;
     border: 2px solid black;
     font-size: 36px;
-    flex-wrap: wrap;
+    text-wrap: wrap;
     text-align: end;
     padding: 0px 10px 5px;
     border: 2px solid hsl(201, 100%, 15%);

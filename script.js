@@ -49,11 +49,24 @@ digitButtons.forEach((button) => {
         };
 
         if (operator === '') {
+            if (button.textContent === '.') {
+                let firstNumberCharacters = firstNumber.slice().split('');
+                if (firstNumberCharacters.includes('.') === false) {
+                    firstNumber += button.textContent;
+                };
+            } else {
             firstNumber += button.textContent;
+            };
         } else {
+            if (button.textContent === '.') {
+                let secondNumberCharacters = secondNumber.slice().split('');
+                if (secondNumberCharacters.includes('.') === false) {
+                    secondNumber += button.textContent;
+                };
+            } else {
             secondNumber += button.textContent;
+            };        
         };
-
         display.textContent = `${firstNumber} ${operator} ${secondNumber}`;
     })
 });
