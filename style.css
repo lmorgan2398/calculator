@@ -1,5 +1,117 @@
-.rows-container {
-    width: 150px;
+@font-face {
+    font-family: 'Space Grotesk';
+    src: url(./Space_Grotesk/SpaceGrotesk-VariableFont_wght.ttf);
+}
+
+* {
+    font-family: 'Space Grotesk';
+    background-color: hsl(201, 100%, 93%);
+}
+
+body {
     display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 100px;
+    padding-top: 50px;
+}
+
+.title-and-description-container {
+    width: 375px;
+}
+
+.title {
+    color: hsl(201, 100%, 15%);
+}
+
+.calculator {
+    width: 320px;
+    border: 2px solid hsl(201, 100%, 15%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: hsl(201, 100%, 80%);
+    border-radius: 15px;
+}
+
+.display-container {
+    width: 300px;
+    display: flex;
+    justify-content: center;
+    background-color: hsl(201, 100%, 80%);
+}
+
+.display {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    width: 260px;
+    min-height: 100px;
+    border: 2px solid black;
+    font-size: 36px;
     flex-wrap: wrap;
+    text-align: end;
+    padding: 0px 10px 5px;
+    border: 2px solid hsl(201, 100%, 15%);
+    border-radius: 10px;
+    background-color: hsl(201, 100%, 90%);
+}
+
+.rows-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+    margin: 0px 10px 20px;
+    background-color: hsl(201, 100%, 80%);
+}
+
+.first-row-container,
+.second-row-container,
+.third-row-container,
+.fourth-row-container,
+.fifth-row-container  {
+    width: 300px;
+    display: flex;
+    justify-content: center;
+}
+
+.first-row-buttons,
+.second-row-buttons,
+.third-row-buttons,
+.fourth-row-buttons,
+.fifth-row-buttons  {
+    width: 300px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    background-color: hsl(201, 100%, 80%);
+}
+
+button {
+    width: 60px;
+    height: 60px;
+    font-size: 32px;
+    background-color: hsl(201, 100%, 87%);
+    color: hsl(201, 100%, 15%);
+    border: 2px solid hsl(201, 100%, 15%);
+    border-radius: 10px;
+}
+
+.operator {
+    background-color: hsl(61, 100%, 85%);
+    color: hsl(61, 100%, 15%);
+}
+
+.equals-button {
+    background-color: hsl(141, 100%, 85%);
+    color: hsl(141, 100%, 15%);
+}
+
+.clear-button,
+.backspace-button {
+    font-size: 28px;
+    width: 135px;
+    background-color: hsl(1, 100%, 80%);
+    color: hsl(1, 100%, 15%);
 }
