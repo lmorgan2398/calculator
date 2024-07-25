@@ -76,12 +76,13 @@ let operatorButtons = Array.from(document.querySelectorAll('.operator'));
 operatorButtons.forEach((button) => {
     button.addEventListener('click',  () => {
         if (answer !== '') {
-            firstNumber = answer;
+            firstNumber = answer.toString();
+            console.log(typeof firstNumber);
             operator = '';
             secondNumber = '';
             answer = '';
         } else if (answer === '' && firstNumber !== '' && operator !== '' && secondNumber !== '') {
-            firstNumber = operate(firstNumber, operator, secondNumber);
+            firstNumber = (operate(firstNumber, operator, secondNumber)).toString();
             secondNumber = '';
         }
 
@@ -115,6 +116,8 @@ clearButton.addEventListener('click', () => {
 let deleteButton = document.querySelector('.backspace-button')
 deleteButton.addEventListener('click', () => {
     if (answer === '') {
+        console.log('no answer');
+        console.log(typeof firstNumber);
         if (secondNumber !== '') {
             secondNumber = secondNumber.slice(0, -1);
             display.textContent = `${firstNumber} ${operator} ${secondNumber}`;
