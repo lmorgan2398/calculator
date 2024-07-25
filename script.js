@@ -96,7 +96,7 @@ operatorButtons.forEach((button) => {
 
 let equalsButton = document.querySelector('.equals-button')
 equalsButton.addEventListener('click', () => {
-    answer = operate(firstNumber, operator, secondNumber)
+    answer = +(operate(firstNumber, operator, secondNumber)).toFixed(3)
 
     display.textContent = `${firstNumber} ${operator} ${secondNumber} = ${answer}`;
 });

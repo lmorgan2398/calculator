@@ -12,6 +12,7 @@ body {
     display: flex;
     flex-direction: row;
     justify-content: center;
+    flex-wrap: wrap;
     gap: 100px;
     padding-top: 50px;
 }
@@ -98,14 +99,29 @@ button {
     border-radius: 10px;
 }
 
+button:hover {
+    background-color: hsl(201, 100%, 15%);
+    color: hsl(201, 100%, 87%);
+}
+
 .operator {
     background-color: hsl(61, 100%, 85%);
     color: hsl(61, 100%, 15%);
 }
 
+.operator:hover {
+    background-color: hsl(61, 100%, 15%);
+    color: hsl(61, 100%, 85%);
+}
+
 .equals-button {
     background-color: hsl(141, 100%, 85%);
     color: hsl(141, 100%, 15%);
+}
+
+.equals-button:hover {
+    background-color: hsl(141, 100%, 15%);
+    color: hsl(141, 100%, 85%);
 }
 
 .clear-button,
@@ -114,4 +130,10 @@ button {
     width: 135px;
     background-color: hsl(1, 100%, 80%);
     color: hsl(1, 100%, 15%);
+}
+
+.clear-button:hover, 
+.backspace-button:hover {
+    background-color: hsl(1, 100%, 15%);
+    color: hsl(1, 100%, 80%);
 }
