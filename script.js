@@ -110,3 +110,20 @@ clearButton.addEventListener('click', () => {
     answer = '';
     display.textContent = `${firstNumber} ${operator} ${secondNumber}`;
 });
+
+
+let deleteButton = document.querySelector('.backspace-button')
+deleteButton.addEventListener('click', () => {
+    if (answer === '') {
+        if (secondNumber !== '') {
+            secondNumber = secondNumber.slice(0, -1);
+            display.textContent = `${firstNumber} ${operator} ${secondNumber}`;
+        } else if (operator !== '') {
+            operator = ''
+            display.textContent = `${firstNumber} ${operator} ${secondNumber}`;
+        } else if (firstNumber !== '') {
+            firstNumber = firstNumber.slice(0, -1);
+            display.textContent = `${firstNumber} ${operator} ${secondNumber}`;
+        }
+    }
+});
