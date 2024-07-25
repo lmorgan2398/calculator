@@ -112,9 +112,17 @@ document.addEventListener('keydown', () => {
                 answer = '';
                 display.textContent = `ERROR`;
             } else {
-                answer = +(operate(firstNumber, operator, secondNumber)).toFixed(3);
-                operationLog();
-                display.textContent = `${firstNumber} ${operator} ${secondNumber} = ${answer}`;
+                answer = (+(operate(firstNumber, operator, secondNumber)).toFixed(3)).toString();
+                if (answer.length <= 10) {
+                    operationLog();
+                    answer = +(answer);
+                    display.textContent = `${firstNumber} ${operator} ${secondNumber} = ${answer}`;
+                } else {
+                    firstNumber = '';
+                    operator = '';
+                    secondNumber = '';
+                    answer = '';
+                    display.textContent = `TOO LARGE`;            }
             };
         };
     }
@@ -196,7 +204,6 @@ operatorButtons.forEach((button) => {
     button.addEventListener('click',  () => {
         if (answer !== '') {
             firstNumber = answer.toString();
-            console.log(typeof firstNumber);
             operator = '';
             secondNumber = '';
             answer = '';
@@ -212,7 +219,6 @@ operatorButtons.forEach((button) => {
                 answer = +(operate(firstNumber, operator, secondNumber)).toFixed(3)
                 operationLog();
                 firstNumber = answer.toString();
-                console.log(typeof firstNumber);
                 answer = '';
                 secondNumber = '';
             };
@@ -236,9 +242,17 @@ equalsButton.addEventListener('click', () => {
             answer = '';
             display.textContent = `ERROR`;
         } else {
-            answer = +(operate(firstNumber, operator, secondNumber)).toFixed(3);
-            operationLog();
-            display.textContent = `${firstNumber} ${operator} ${secondNumber} = ${answer}`;
+            answer = (+(operate(firstNumber, operator, secondNumber)).toFixed(3)).toString();
+            if (answer.length <= 10) {
+                operationLog();
+                answer = +(answer);
+                display.textContent = `${firstNumber} ${operator} ${secondNumber} = ${answer}`;
+            } else {
+                firstNumber = '';
+                operator = '';
+                secondNumber = '';
+                answer = '';
+                display.textContent = `TOO LARGE`;            }
         };
     };
 });
