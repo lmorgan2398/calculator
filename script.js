@@ -81,25 +81,45 @@ operatorButtons.forEach((button) => {
             operator = '';
             secondNumber = '';
             answer = '';
+            display.textContent = `${firstNumber} ${operator} ${secondNumber}`;
         } else if (answer === '' && firstNumber !== '' && operator !== '' && secondNumber !== '') {
-            firstNumber = (operate(firstNumber, operator, secondNumber)).toString();
-            secondNumber = '';
+            if (secondNumber === '0' && operator === '/') {
+                firstNumber = '';
+                operator = '';
+                secondNumber = '';
+                answer = '';
+                display.textContent = `ERROR`;
+            } else {
+                answer = +(operate(firstNumber, operator, secondNumber)).toFixed(3)
+                firstNumber = answer.toString();
+                console.log(typeof firstNumber);
+                answer = '';
+                secondNumber = '';
+            };
         }
 
         if (firstNumber !== '') {
             operator = button.textContent;
+            display.textContent = `${firstNumber} ${operator} ${secondNumber}`;
         }
-
-        display.textContent = `${firstNumber} ${operator} ${secondNumber}`;
     })
 });
 
 
 let equalsButton = document.querySelector('.equals-button')
 equalsButton.addEventListener('click', () => {
-    answer = +(operate(firstNumber, operator, secondNumber)).toFixed(3)
-
-    display.textContent = `${firstNumber} ${operator} ${secondNumber} = ${answer}`;
+    if (answer === '' && secondNumber !== '' && operator !== '' && firstNumber !== '') {
+        if (secondNumber === '0' && operator === '/') {
+            firstNumber = '';
+            operator = '';
+            secondNumber = '';
+            answer = '';
+            display.textContent = `ERROR`;
+        } else {
+            answer = +(operate(firstNumber, operator, secondNumber)).toFixed(3)
+            display.textContent = `${firstNumber} ${operator} ${secondNumber} = ${answer}`;
+        };
+    };
 });
 
 
