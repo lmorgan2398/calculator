@@ -25,6 +25,10 @@ body {
     color: hsl(201, 100%, 15%);
 }
 
+.description {
+    color: hsl(201, 100%, 25%);
+}
+
 .calculator {
     width: 320px;
     border: 2px solid hsl(201, 100%, 15%);
@@ -140,4 +144,15 @@ button:hover {
 
 .operation-log-container {
     min-width: 375px;
+}
+
+.operation-log-title {
+    margin: 21.440px 0px 4px;
+    color: hsl(201, 100%, 25%);
+}
+
+.operation-log p {
+    color: hsl(201, 100%, 65%);
+
+    margin: 8px 4px;
 }

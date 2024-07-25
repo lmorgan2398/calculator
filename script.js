@@ -38,6 +38,16 @@ function operate(num1, op, num2) {
 }
 
 
+let operationLogContainer = document.querySelector('.operation-log');
+
+function operationLog() {
+    let newOperation = document.createElement("p");
+    console.log(newOperation);
+    newOperation.textContent = `${firstNumber} ${operator} ${secondNumber} = ${answer}`;
+    operationLogContainer.appendChild(newOperation);
+};
+
+
 let digitButtons = Array.from(document.querySelectorAll('.digit'));
 digitButtons.forEach((button) => {
     button.addEventListener('click', () => {
@@ -91,6 +101,7 @@ operatorButtons.forEach((button) => {
                 display.textContent = `ERROR`;
             } else {
                 answer = +(operate(firstNumber, operator, secondNumber)).toFixed(3)
+                operationLog();
                 firstNumber = answer.toString();
                 console.log(typeof firstNumber);
                 answer = '';
@@ -116,7 +127,8 @@ equalsButton.addEventListener('click', () => {
             answer = '';
             display.textContent = `ERROR`;
         } else {
-            answer = +(operate(firstNumber, operator, secondNumber)).toFixed(3)
+            answer = +(operate(firstNumber, operator, secondNumber)).toFixed(3);
+            operationLog();
             display.textContent = `${firstNumber} ${operator} ${secondNumber} = ${answer}`;
         };
     };
@@ -150,3 +162,5 @@ deleteButton.addEventListener('click', () => {
         }
     }
 });
+
+
