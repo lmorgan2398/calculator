@@ -51,23 +51,27 @@ document.addEventListener('keydown', () => {
         };
 
         if (operator === '') {
-            if (event.key === '.') {
-                let firstNumberCharacters = firstNumber.slice().split('');
-                if (firstNumberCharacters.includes('.') === false) {
-                    firstNumber += event.key;
+            if (firstNumber.length < 10) {
+                if (event.key === '.') {
+                    let firstNumberCharacters = firstNumber.slice().split('');
+                    if (firstNumberCharacters.includes('.') === false) {
+                        firstNumber += event.key;
+                    };
+                } else {
+                firstNumber += event.key;
                 };
-            } else {
-            firstNumber += event.key;
             };
         } else {
-            if (event.key === '.') {
-                let secondNumberCharacters = secondNumber.slice().split('');
-                if (secondNumberCharacters.includes('.') === false) {
-                    secondNumber += event.key;
-                };
-            } else {
-            secondNumber += event.key;
-            };        
+            if (secondNumber.length < 10) {
+                if (event.key === '.') {
+                    let secondNumberCharacters = secondNumber.slice().split('');
+                    if (secondNumberCharacters.includes('.') === false) {
+                        secondNumber += event.key;
+                    };
+                } else {
+                secondNumber += event.key;
+                };       
+            };
         };
         display.textContent = `${firstNumber} ${operator} ${secondNumber}`;
     }
@@ -138,6 +142,7 @@ document.addEventListener('keydown', () => {
 });
 
 
+
 let operationLogContainer = document.querySelector('.operation-log');
 
 function operationLog() {
@@ -145,6 +150,7 @@ function operationLog() {
     newOperation.textContent = `${firstNumber} ${operator} ${secondNumber} = ${answer}`;
     operationLogContainer.appendChild(newOperation);
 };
+
 
 
 let digitButtons = Array.from(document.querySelectorAll('.digit'));
@@ -158,23 +164,27 @@ digitButtons.forEach((button) => {
         };
 
         if (operator === '') {
-            if (button.textContent === '.') {
-                let firstNumberCharacters = firstNumber.slice().split('');
-                if (firstNumberCharacters.includes('.') === false) {
-                    firstNumber += button.textContent;
+            if (firstNumber.length < 10) {
+                if (button.textContent === '.') {
+                    let firstNumberCharacters = firstNumber.slice().split('');
+                    if (firstNumberCharacters.includes('.') === false) {
+                        firstNumber += button.textContent;
+                    };
+                } else {
+                firstNumber += button.textContent;
                 };
-            } else {
-            firstNumber += button.textContent;
             };
         } else {
-            if (button.textContent === '.') {
-                let secondNumberCharacters = secondNumber.slice().split('');
-                if (secondNumberCharacters.includes('.') === false) {
-                    secondNumber += button.textContent;
-                };
-            } else {
-            secondNumber += button.textContent;
-            };        
+            if (secondNumber.length < 10) {
+                if (button.textContent === '.') {
+                    let secondNumberCharacters = secondNumber.slice().split('');
+                    if (secondNumberCharacters.includes('.') === false) {
+                        secondNumber += button.textContent;
+                    };
+                } else {
+                secondNumber += button.textContent;
+                };      
+            };  
         };
         display.textContent = `${firstNumber} ${operator} ${secondNumber}`;
     })
