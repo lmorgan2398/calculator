@@ -90,11 +90,21 @@ document.addEventListener('keydown', () => {
                 answer = '';
                 display.textContent = `ERROR`;
             } else {
-                answer = +(operate(firstNumber, operator, secondNumber)).toFixed(3)
-                operationLog();
-                firstNumber = answer.toString();
-                answer = '';
-                secondNumber = '';
+                answer = (+(operate(firstNumber, operator, secondNumber)).toFixed(3)).toString();
+                console.log(typeof answer);
+                console.log(answer);
+                if (answer.length <= 10) {
+                    operationLog();
+                    firstNumber = answer;
+                    answer = '';
+                    secondNumber = '';
+                } else {
+                    firstNumber = '';
+                    operator = '';
+                    secondNumber = '';
+                    answer = '';
+                    display.textContent = `TOO LARGE`;
+                }
             };
         }
 
@@ -122,7 +132,7 @@ document.addEventListener('keydown', () => {
                     operator = '';
                     secondNumber = '';
                     answer = '';
-                    display.textContent = `TOO LARGE`;            }
+                    display.textContent = `TOO LARGE`; }
             };
         };
     }
@@ -216,19 +226,28 @@ operatorButtons.forEach((button) => {
                 answer = '';
                 display.textContent = `ERROR`;
             } else {
-                answer = +(operate(firstNumber, operator, secondNumber)).toFixed(3)
-                operationLog();
-                firstNumber = answer.toString();
-                answer = '';
-                secondNumber = '';
-            };
+                answer = (+(operate(firstNumber, operator, secondNumber)).toFixed(3)).toString();
+                console.log(typeof answer);
+                console.log(answer);
+                if (answer.length <= 10) {
+                    operationLog();
+                    firstNumber = answer;
+                    answer = '';
+                    secondNumber = '';
+                } else {
+                    firstNumber = '';
+                    operator = '';
+                    secondNumber = '';
+                    answer = '';
+                    display.textContent = `TOO LARGE`;
+                }
+            }
         }
-
         if (firstNumber !== '') {
             operator = button.textContent;
             display.textContent = `${firstNumber} ${operator} ${secondNumber}`;
         }
-    })
+    });
 });
 
 
@@ -252,7 +271,8 @@ equalsButton.addEventListener('click', () => {
                 operator = '';
                 secondNumber = '';
                 answer = '';
-                display.textContent = `TOO LARGE`;            }
+                display.textContent = `TOO LARGE`;
+            }
         };
     };
 });
