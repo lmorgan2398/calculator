@@ -307,3 +307,10 @@ deleteButton.addEventListener('click', () => {
 });
 
 
+let operationLogClear = document.querySelector('.operation-log-clear')
+operationLogClear.addEventListener('click', () => {
+    let operationLog = document.querySelector('.operation-log')
+    while (operationLog.firstChild) {
+        operationLog.removeChild(operationLog.firstChild)
+    };
+})
