@@ -9,10 +9,10 @@
     <body>
         <div class="title-and-description-container">
             <h1 class="title">Online Calculator</h1>
-            <p class="description">This calculator can perform basic multiplication, division, addition, and subtraction operations. To prevent display errors, numbers entered 
-                or received (as answers) from the calculator may not exceed a length of 10 digits, including decimal points. Answers will always be rounded to the nearest thousandth. 
-                Calculations may be chained by selecting an operator instead of the equals sign. The operation log will keep records of each operation once an answer has been calculated. 
-                Keyboard inputs are supported.
+            <p class="description">This calculator can perform basic multiplication, division, addition, and subtraction operations. <br/> </br/>To prevent display errors, numbers entered 
+                or received (as answers) from the calculator may not exceed a length of 10 digits, including decimal points. <br/> </br/>Answers will always be rounded to the nearest thousandth. 
+                <br/> </br/>Calculations may be chained by selecting an operator instead of the equals sign. <br/> </br/>The operation log will keep records of each operation once an answer has been calculated. 
+                <br/> </br/>Keyboard inputs are supported.
             </p>
         </div>
         <div class="calculator-container">
@@ -63,7 +63,10 @@
             </div>
         </div>
         <div class="operation-log-container">
-            <h2 class="operation-log-title">Operation Log</h2>
+            <div class="operation-log-title-bar">
+                <h2 class="operation-log-title">Operation Log</h2>
+                <button class="operation-log-clear">Clear</button>
+            </div>
             <div class="operation-log"></div>
         </div>
         <script src="script.js"></script>
