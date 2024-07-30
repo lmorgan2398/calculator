@@ -162,22 +162,15 @@ document.addEventListener('keydown', () => {
                     display.textContent = `TOO LARGE`; }
             };
         };
-    }
+    };
     if (event.key === 'Escape') {
-        if (event.altKey === true) {
-            let operationLog = document.querySelector('.operation-log')
-            while (operationLog.firstChild) {
-                operationLog.removeChild(operationLog.firstChild)
-            };
-        } else {
-            firstNumber = '';
-            operator = '';
-            secondNumber = '';
-            answer = '';
-            operator = toHumanOperator(operator);
-            display.textContent = `${firstNumber} ${operator} ${secondNumber}`;
-        };
-    }
+        firstNumber = '';
+        operator = '';
+        secondNumber = '';
+        answer = '';
+        operator = toHumanOperator(operator);
+        display.textContent = `${firstNumber} ${operator} ${secondNumber}`;
+    };
     if (event.key === 'Backspace' || event.key === 'Delete') {
         if (answer === '') {
             if (secondNumber !== '') {
@@ -194,6 +187,12 @@ document.addEventListener('keydown', () => {
                 display.textContent = `${firstNumber} ${operator} ${secondNumber}`;
             }
         }
+    };
+    if (event.key === 'Delete') {
+        let operationLog = document.querySelector('.operation-log')
+        while (operationLog.firstChild) {
+            operationLog.removeChild(operationLog.firstChild)
+        };
     }
 });
 
