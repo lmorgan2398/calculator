@@ -41,6 +41,27 @@ function operate(num1, op, num2) {
 let digits = ['.', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
 let operators = ['*', '/', '+', '-'];
 
+
+
+function toHumanOperator(op) {
+    if (op === '/') {
+        op = op.replace('/', '÷')
+    } else if (op === '*') {
+        op = op.replace('*', '×')
+    }
+    return op;
+};
+
+function toComputerOperator(op) {
+    if (op === '÷') {
+        op = op.replace('÷', '/')
+    } else if (op === '×') {
+        op = op.replace('×', '*')
+    }
+    return op;
+};
+
+
 document.addEventListener('keydown', () => {
     if (digits.includes(event.key)) {
         if (answer !== '') {
@@ -73,6 +94,7 @@ document.addEventListener('keydown', () => {
                 };       
             };
         };
+        operator = toHumanOperator(operator);
         display.textContent = `${firstNumber} ${operator} ${secondNumber}`;
     }
     if (operators.includes(event.key)) {
@@ -81,8 +103,10 @@ document.addEventListener('keydown', () => {
             operator = '';
             secondNumber = '';
             answer = '';
+            operator = toHumanOperator(operator);
             display.textContent = `${firstNumber} ${operator} ${secondNumber}`;
         } else if (answer === '' && firstNumber !== '' && operator !== '' && secondNumber !== '') {
+            operator = toComputerOperator(operator);
             if (secondNumber === '0' && operator === '/') {
                 firstNumber = '';
                 operator = '';
@@ -90,9 +114,8 @@ document.addEventListener('keydown', () => {
                 answer = '';
                 display.textContent = `ERROR`;
             } else {
+                operator = toComputerOperator(operator);
                 answer = (+(operate(firstNumber, operator, secondNumber)).toFixed(3)).toString();
-                console.log(typeof answer);
-                console.log(answer);
                 if (answer.length <= 10) {
                     operationLog();
                     firstNumber = answer;
@@ -110,11 +133,13 @@ document.addEventListener('keydown', () => {
 
         if (firstNumber !== '') {
             operator = event.key;
+            operator = toHumanOperator(operator);
             display.textContent = `${firstNumber} ${operator} ${secondNumber}`;
         }
     }
-    if (event.key === 'Enter') {
+    if (event.key === 'Enter' || event.key === '=') {
         if (answer === '' && secondNumber !== '' && operator !== '' && firstNumber !== '') {
+            operator = toComputerOperator(operator);
             if (secondNumber === '0' && operator === '/') {
                 firstNumber = '';
                 operator = '';
@@ -122,10 +147,12 @@ document.addEventListener('keydown', () => {
                 answer = '';
                 display.textContent = `ERROR`;
             } else {
+                operator = toComputerOperator(operator);
                 answer = (+(operate(firstNumber, operator, secondNumber)).toFixed(3)).toString();
                 if (answer.length <= 10) {
                     operationLog();
                     answer = +(answer);
+                    operator = toHumanOperator(operator);
                     display.textContent = `${firstNumber} ${operator} ${secondNumber} = ${answer}`;
                 } else {
                     firstNumber = '';
@@ -137,22 +164,33 @@ document.addEventListener('keydown', () => {
         };
     }
     if (event.key === 'Escape') {
-        firstNumber = '';
-        operator = '';
-        secondNumber = '';
-        answer = '';
-        display.textContent = `${firstNumber} ${operator} ${secondNumber}`;
+        if (event.altKey === true) {
+            let operationLog = document.querySelector('.operation-log')
+            while (operationLog.firstChild) {
+                operationLog.removeChild(operationLog.firstChild)
+            };
+        } else {
+            firstNumber = '';
+            operator = '';
+            secondNumber = '';
+            answer = '';
+            operator = toHumanOperator(operator);
+            display.textContent = `${firstNumber} ${operator} ${secondNumber}`;
+        };
     }
     if (event.key === 'Backspace' || event.key === 'Delete') {
         if (answer === '') {
             if (secondNumber !== '') {
                 secondNumber = secondNumber.slice(0, -1);
+                operator = toHumanOperator(operator);
                 display.textContent = `${firstNumber} ${operator} ${secondNumber}`;
             } else if (operator !== '') {
                 operator = ''
+                operator = toHumanOperator(operator);
                 display.textContent = `${firstNumber} ${operator} ${secondNumber}`;
             } else if (firstNumber !== '') {
                 firstNumber = firstNumber.slice(0, -1);
+                operator = toHumanOperator(operator);
                 display.textContent = `${firstNumber} ${operator} ${secondNumber}`;
             }
         }
@@ -165,6 +203,7 @@ let operationLogContainer = document.querySelector('.operation-log');
 
 function operationLog() {
     let newOperation = document.createElement("p");
+    operator = toHumanOperator(operator);
     newOperation.textContent = `${firstNumber} ${operator} ${secondNumber} = ${answer}`;
     operationLogContainer.appendChild(newOperation);
 };
@@ -204,6 +243,7 @@ digitButtons.forEach((button) => {
                 };      
             };  
         };
+        operator = toHumanOperator(operator);
         display.textContent = `${firstNumber} ${operator} ${secondNumber}`;
     })
 });
@@ -217,8 +257,10 @@ operatorButtons.forEach((button) => {
             operator = '';
             secondNumber = '';
             answer = '';
+            operator = toHumanOperator(operator);
             display.textContent = `${firstNumber} ${operator} ${secondNumber}`;
         } else if (answer === '' && firstNumber !== '' && operator !== '' && secondNumber !== '') {
+            operator = toComputerOperator(operator);
             if (secondNumber === '0' && operator === '/') {
                 firstNumber = '';
                 operator = '';
@@ -226,9 +268,8 @@ operatorButtons.forEach((button) => {
                 answer = '';
                 display.textContent = `ERROR`;
             } else {
+                operator = toComputerOperator(operator);
                 answer = (+(operate(firstNumber, operator, secondNumber)).toFixed(3)).toString();
-                console.log(typeof answer);
-                console.log(answer);
                 if (answer.length <= 10) {
                     operationLog();
                     firstNumber = answer;
@@ -245,6 +286,7 @@ operatorButtons.forEach((button) => {
         }
         if (firstNumber !== '') {
             operator = button.textContent;
+            operator = toHumanOperator(operator);
             display.textContent = `${firstNumber} ${operator} ${secondNumber}`;
         }
     });
@@ -254,6 +296,7 @@ operatorButtons.forEach((button) => {
 let equalsButton = document.querySelector('.equals-button')
 equalsButton.addEventListener('click', () => {
     if (answer === '' && secondNumber !== '' && operator !== '' && firstNumber !== '') {
+        operator = toComputerOperator(operator);
         if (secondNumber === '0' && operator === '/') {
             firstNumber = '';
             operator = '';
@@ -261,10 +304,12 @@ equalsButton.addEventListener('click', () => {
             answer = '';
             display.textContent = `ERROR`;
         } else {
+            operator = toComputerOperator(operator);
             answer = (+(operate(firstNumber, operator, secondNumber)).toFixed(3)).toString();
             if (answer.length <= 10) {
                 operationLog();
                 answer = +(answer);
+                operator = toHumanOperator(operator);
                 display.textContent = `${firstNumber} ${operator} ${secondNumber} = ${answer}`;
             } else {
                 firstNumber = '';
@@ -284,6 +329,7 @@ clearButton.addEventListener('click', () => {
     operator = '';
     secondNumber = '';
     answer = '';
+    operator = toHumanOperator(operator);
     display.textContent = `${firstNumber} ${operator} ${secondNumber}`;
 });
 
@@ -291,16 +337,17 @@ clearButton.addEventListener('click', () => {
 let deleteButton = document.querySelector('.backspace-button')
 deleteButton.addEventListener('click', () => {
     if (answer === '') {
-        console.log('no answer');
-        console.log(typeof firstNumber);
         if (secondNumber !== '') {
             secondNumber = secondNumber.slice(0, -1);
+            operator = toHumanOperator(operator);
             display.textContent = `${firstNumber} ${operator} ${secondNumber}`;
         } else if (operator !== '') {
-            operator = ''
+            operator = '';
+            operator = toHumanOperator(operator);
             display.textContent = `${firstNumber} ${operator} ${secondNumber}`;
         } else if (firstNumber !== '') {
             firstNumber = firstNumber.slice(0, -1);
+            operator = toHumanOperator(operator);
             display.textContent = `${firstNumber} ${operator} ${secondNumber}`;
         }
     }
